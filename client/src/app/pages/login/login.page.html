@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>RealTime Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
+      <h1>Welcome Back</h1>
+      <p>Sign in to continue chatting</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
+      <div class="input-group">
+        <ion-item lines="none" class="auth-input">
+          <ion-input label="Username" labelPlacement="floating" formControlName="username"></ion-input>
+        </ion-item>
+      </div>
+      <div class="input-group">
+        <ion-item lines="none" class="auth-input">
+          <ion-input label="Password" labelPlacement="floating" type="password" formControlName="password"></ion-input>
+        </ion-item>
+      </div>
+      <ion-button expand="block" type="submit" [disabled]="!loginForm.valid" class="auth-btn">
+        Sign In
+      </ion-button>
+    </form>
+
+    <div class="auth-footer">
+      <p>Don't have an account? <a routerLink="/register">Register</a></p>
+    </div>
+  </div>
+</ion-content>

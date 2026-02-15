@@ -1,0 +1,114 @@
+:host {
+    ion-content {
+        --background: var(--app-bg);
+    }
+}
+
+ion-list {
+    padding: 0;
+    background: transparent;
+
+    ion-list-header {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--app-accent);
+        padding: 20px 16px 8px;
+        min-height: auto;
+        --background: transparent;
+    }
+}
+
+// Room items
+ion-item[button] {
+    --background: var(--app-card);
+    --color: var(--app-text);
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+    --min-height: 52px;
+    --border-color: var(--app-border);
+
+    ion-icon[slot="start"] {
+        color: var(--app-accent);
+        font-size: 22px;
+        margin-right: 12px;
+    }
+}
+
+// Chat items (DMs)
+.chat-item {
+    --padding-start: 0;
+    --background: var(--app-card);
+    --min-height: 72px;
+    --border-color: var(--app-border);
+
+    ion-avatar {
+        margin: 8px 12px 8px 16px;
+        width: 48px;
+        height: 48px;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    h2 {
+        font-weight: 500;
+        font-size: 16px;
+        color: var(--app-text);
+        margin: 0 0 2px;
+    }
+
+    .last-message {
+        color: var(--app-text-secondary);
+        font-size: 13px;
+        margin-top: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .end-slot {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+        min-width: 55px;
+        padding-right: 16px;
+    }
+
+    .msg-time {
+        font-size: 12px;
+        color: var(--app-text-secondary);
+    }
+
+    .unread-time {
+        color: var(--app-unread);
+        font-weight: 600;
+    }
+
+    .unread-badge {
+        --background: var(--app-unread);
+        font-size: 11px;
+        font-weight: 700;
+        min-width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // Unread state
+    &.unread {
+        h2 {
+            font-weight: 700;
+        }
+
+        .last-message {
+            color: var(--app-text);
+            font-weight: 600;
+        }
+    }
+}

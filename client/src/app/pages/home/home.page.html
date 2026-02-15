@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Chats</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>Public Rooms</ion-label>
+        </ion-list-header>
+        @for (room of rooms; track room) {
+        <ion-item button (click)="openRoom(room)">
+            <ion-icon slot="start" name="people-outline"></ion-icon>
+            <ion-label>{{ room }}</ion-label>
+        </ion-item>
+        }
+
+        <ion-list-header>
+            <ion-label>Direct Messages</ion-label>
+        </ion-list-header>
+        @for (user of users; track user._id) {
+        <ion-item button (click)="openChat(user)" class="chat-item" [class.unread]="hasUnread(user._id)">
+            <ion-avatar slot="start">
+                <img [src]="user.avatar || 'https://gravatar.com/avatar/placeholder?d=mp'" alt="avatar" />
+            </ion-avatar>
+            <ion-label>
+                <h2>{{ user.username }}</h2>
+                <p class="last-message">{{ getLastMessage(user._id) }}</p>
+            </ion-label>
+            <div slot="end" class="end-slot">
+                <span class="msg-time" [class.unread-time]="hasUnread(user._id)">{{ getLastMessageTime(user._id)
+                    }}</span>
+                @if (hasUnread(user._id)) {
+                <ion-badge color="primary" class="unread-badge">{{ getUnreadCount(user._id) }}</ion-badge>
+                }
+            </div>
+        </ion-item>
+        }
+    </ion-list>
+</ion-content>

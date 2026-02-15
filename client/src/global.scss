@@ -1,0 +1,59 @@
+/*
+ * App Global CSS
+ */
+
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Dark mode disabled — light only */
+/* @import "@ionic/angular/css/palettes/dark.system.css"; */
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+ion-toolbar {
+    --border-width: 0 !important;
+}
+
+ion-content {
+    --background: var(--app-bg);
+}
+
+ion-item {
+    --background: var(--app-card);
+    --color: var(--app-text);
+}
+
+ion-list {
+    background: transparent;
+}
+
+ion-header ion-toolbar:first-of-type {
+    padding-top: var(--ion-safe-area-top, 0);
+}
+
+ion-button {
+    --border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: none;
+}
+
+a {
+    color: var(--app-accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

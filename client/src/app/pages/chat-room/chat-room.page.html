@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{ chatName }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [scrollEvents]="true">
+    @for (msg of messages; track msg._id || msg.createdAt) {
+    <div class="message-wrap" [class.my-message]="isMyMessage(msg)">
+        <div class="message-info">
+            <span class="sender-name">{{ msg.sender.username || 'Me' }}</span>
+            <span class="time">{{ msg.createdAt | date:'shortTime' }}</span>
+        </div>
+
+        @if (msg.type === 'image') {
+        <div class="message-box image-box">
+            <img [src]="msg.content" alt="image" />
+        </div>
+        } @else {
+        <div class="message-box">
+            {{ msg.content }}
+        </div>
+        }
+
+        @if (isMyMessage(msg)) {
+        <div class="read-status">
+            @if (isRead(msg)) {
+            <ion-icon name="checkmark-done-outline" class="read"></ion-icon>
+            } @else {
+            <ion-icon name="checkmark-outline" class="sent"></ion-icon>
+            }
+        </div>
+        }
+    </div>
+    }
+
+    @if (typingUser) {
+    <div class="typing-indicator">
+        <div class="typing-dots">
+            <span></span><span></span><span></span>
+        </div>
+        {{ typingUser }}
+    </div>
+    }
+</ion-content>
+
+<!-- Emoji Picker Panel -->
+@if (showEmojiPicker) {
+<div class="emoji-panel">
+    <div class="emoji-grid">
+        @for (emoji of emojis; track emoji) {
+        <button class="emoji-btn" (click)="addEmoji(emoji)">{{ emoji }}</button>
+        }
+    </div>
+</div>
+}
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="toggleEmojiPicker()">
+                <ion-icon name="happy-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button (click)="sendImage()">
+                <ion-icon name="image-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-item lines="none">
+            <ion-textarea placeholder="Escribe un mensaje..." [(ngModel)]="messageInput" (ionInput)="onTyping()"
+                [autoGrow]="true" [rows]="1"></ion-textarea>
+        </ion-item>
+        <ion-buttons slot="end">
+            <ion-button (click)="sendMessage()" [disabled]="!messageInput.trim()">
+                <ion-icon name="send" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

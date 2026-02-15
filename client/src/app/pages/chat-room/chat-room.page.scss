@@ -1,0 +1,186 @@
+:host {
+  ion-content {
+    --background: var(--app-chat-bg);
+  }
+}
+
+.message-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+
+  .message-info {
+    font-size: 11px;
+    color: var(--app-text-secondary);
+    margin-bottom: 1px;
+    display: flex;
+    gap: 6px;
+    padding: 0 4px;
+
+    .sender-name {
+      font-weight: 600;
+      color: var(--app-sender-name);
+    }
+  }
+
+  .message-box {
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 80%;
+    width: fit-content;
+    background: var(--app-bubble-other);
+    color: var(--app-bubble-text);
+    font-size: 15px;
+    line-height: 1.4;
+    word-break: break-word;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+  }
+
+  &.my-message {
+    align-items: flex-end;
+
+    .message-box {
+      background: var(--app-bubble-me);
+      color: var(--app-bubble-text);
+      border-radius: 8px 8px 0 8px;
+    }
+
+    .message-info {
+      flex-direction: row-reverse;
+
+      .sender-name {
+        color: var(--app-accent-light);
+      }
+    }
+  }
+
+  &:not(.my-message) .message-box {
+    border-radius: 8px 8px 8px 0;
+  }
+
+  .read-status {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1px;
+    padding-right: 4px;
+
+    ion-icon {
+      font-size: 14px;
+    }
+
+    .sent {
+      color: var(--app-text-secondary);
+    }
+
+    .read {
+      color: var(--app-read);
+    }
+  }
+}
+
+.image-box img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+// Typing indicator
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-style: italic;
+  color: var(--app-accent);
+  font-size: 13px;
+  padding: 4px 8px;
+
+  .typing-dots {
+    display: flex;
+    gap: 3px;
+
+    span {
+      width: 5px;
+      height: 5px;
+      background: var(--app-accent);
+      border-radius: 50%;
+      animation: typing-bounce 1.4s infinite ease-in-out;
+
+      &:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+    }
+  }
+}
+
+@keyframes typing-bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Emoji picker
+.emoji-panel {
+  background: var(--app-card);
+  border-top: 1px solid var(--app-border);
+  padding: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+
+  .emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+
+    .emoji-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      padding: 6px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.15s;
+
+      &:active {
+        background: rgba(79, 70, 229, 0.1);
+      }
+    }
+  }
+}
+
+// Footer toolbar
+ion-footer ion-toolbar {
+  --background: var(--app-card);
+  --border-width: 0;
+  padding: 4px 0;
+
+  ion-button {
+    --color: var(--app-accent);
+  }
+
+  ion-item {
+    --background: var(--app-input-bg);
+    --color: var(--app-text);
+    --border-radius: 20px;
+    border-radius: 20px;
+    margin: 0 4px;
+    --padding-start: 12px;
+    --inner-padding-end: 8px;
+    --min-height: 40px;
+  }
+}
