@@ -29,8 +29,11 @@ export class SocketService {
     }
 
     disconnect() {
-        this.socket.disconnect();
-        this.listenersAttached = false;
+        if (this.socket) {
+            this.socket.disconnect();
+            this.socket.removeAllListeners(); // Fix: Remove listeners to prevent duplicates on reconnect
+            this.listenersAttached = false;
+        }
     }
 
     registerUser(userId: string) {
